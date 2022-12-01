@@ -1,3 +1,5 @@
+package Variable;
+
 public class Variable {
     public static void variableUse() {
         int year = 0;

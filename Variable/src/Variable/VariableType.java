@@ -1,3 +1,5 @@
+package Variable;
+
 import java.util.Scanner;
 
 public class VariableType {
