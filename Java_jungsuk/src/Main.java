@@ -10,5 +10,8 @@ public class Main {
 //        variableType.stringPlus();
 //        variableType.scannerInput();
         operator.unaryOperation();
+        operator.lowerToUpper();
+        operator.autoRound();
+        operator.equalOperator();
     }
 }
