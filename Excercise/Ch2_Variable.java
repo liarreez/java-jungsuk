@@ -8,6 +8,11 @@ public class Main {
         printEx1();
         printEx2();
         scannerEx();
+        charToCode();
+        specialCharEx();
+        overFlowEx();
+        floatEx();
+        floatToBinEx();
     }
 
     public static void ch2VarEx1() {
@@ -110,5 +115,59 @@ public class Main {
 
         System.out.println("입력내용 :" + input);
         System.out.printf("num=%d%n", num);
+    }
+
+    public static void charToCode(){
+        char ch = 'A';
+        int code = (int)ch;
+
+        System.out.printf("%c=%d(%#X)%n", ch, code, code);
+
+        char hch ='가';
+        System.out.printf("%c=%d(%#X)%n", hch, (int)hch, (int)hch);
+    }
+
+    public static void specialCharEx(){
+        System.out.println('\'');
+        System.out.println("abc\t123\b456");
+        System.out.println('\n');
+        System.out.println("\"hello\"");
+        System.out.println("c:\\");
+    }
+
+    public static void overFlowEx(){
+        short sMin = -32768;
+        short sMax = 32767;
+        char cMin = 0;
+        char cMax = 65535;
+
+        System.out.println("sMin = "+ sMin);
+        System.out.println("sMin-1 = "+ (short)(sMin-1));
+        System.out.println("sMax = "+ sMax);
+        System.out.println("sMax+1 = "+ (short)(sMax+1));
+        System.out.println("cMin = "+ (int)cMin);
+        System.out.println("cMin-1 = "+ (int)--cMin);
+        System.out.println("cMax = "+ (int)cMax);
+        System.out.println("cMax = "+ (int)++cMax);
+    }
+
+    public static void floatEx(){
+        float f = 9.12345678901234567890f;
+        float f2 = 1.2345678901234567890f;
+        double d = 9.12345678901234567890d;
+
+        System.out.printf("123456789012345678901234%n");
+        System.out.printf("f : %f%n", f);
+        System.out.printf("f : %24.20f%n", f);
+        System.out.printf("f2 : %24.20f%n", f2);
+        System.out.printf("d : %24.20f%n", d);
+    }
+
+    public static void floatToBinEx(){
+        float f = 9.1234567f;
+        int i = Float.floatToIntBits(f);
+
+        System.out.printf("%f%n", f);
+        System.out.printf("%X%n", i);
     }
 }
