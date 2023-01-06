@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         operatorEx1();
@@ -19,6 +21,13 @@ public class Main {
         operatorEx18();
         operatorEx19();
         operatorEx20();
+        operatorEx21();
+        operatorEx22();
+        operatorEx23();
+        operatorEx24();
+        operatorEx25();
+        operatorEx26();
+        operatorEx27();
     }
 
     public static void operatorEx1(){
@@ -207,5 +216,110 @@ public class Main {
         System.out.println(10%-8);
         System.out.println(-10%-8);
 
+    }
+
+    public static void operatorEx21(){
+        System.out.printf("10 == 10.0f \t %b%n", 10==10.0f);
+        System.out.printf("'0' == 0 \t %b%n", '0'== 0);
+        System.out.printf("'A' == 65 \t %b%n", 'A'== 65);
+        System.out.printf("'A' == 'B' \t %b%n", 'A' > 'B');
+        System.out.printf("'A'+1 != 'B' \t %b%n", 'A'+1 != 'B');
+    }
+
+    public static void operatorEx22(){
+        float f = 0.1f;
+        double d = 0.1;
+        double d2 = (double)f;
+
+        System.out.printf("10.0 == 10.0f \t %b%n", 10.0==10.0f);
+        System.out.printf("0.1 == 0.1f \t %b%n", 0.1==0.1f);
+        System.out.printf("f == %19.17f%n", f);
+        System.out.printf("f == %19.17f%n", d);
+        System.out.printf("f == %19.17f%n", d2);
+        System.out.printf("d == f %b%n", d==f);
+        System.out.printf("d == f %b%n", d==d2);
+        System.out.printf("d == f %b%n", d2==f);
+        System.out.printf("(float)d == f %b%n", (float)d==f);
+    }
+
+    public static void operatorEx23(){
+        String str1 = "abc";
+        String str2 = new String("abc");
+
+        System.out.printf("\"abc\"==\"abc\" ? %b%n", "abc"=="abc");
+        System.out.printf(" str1==\"abc\" ? %b%n", str1=="abc");
+        System.out.printf(" str2==\"abc\" ? %b%n", str2=="abc");
+        System.out.printf("str1.equals(\"abc\") ? %b%n", str1.equals("abc"));
+        System.out.printf("str2.equals(\"abc\") ? %b%n", str2.equals("abc"));
+        System.out.printf("str2.equals(\"ABC\") ? %b%n", str2.equals("ABC"));
+        System.out.printf("str2.equalsIgnoreCase(\"ABC\") ? %b%n", str2.equalsIgnoreCase("ABC"));
+    }
+
+    public static void operatorEx24(){
+        int x = 0;
+        char ch = ' ';
+
+        x = 15;
+        System.out.printf("x=%2d, 10 < x && x < 20 = %b%n", x, 10 < x && x < 20);
+
+        x = 6;
+        System.out.printf("x=%2d, x%%2==0 || x%%3==0 && x%%6!=0 = %b%n", x, x%2==0||x%3==0&&x%6!=0);
+        System.out.printf("x=%2d, (x%%2==0 || x%%3==0) && x%%6!=0 = %b%n", x, (x%2==0||x%3==0)&&x%6!=0);
+
+        ch='1';
+        System.out.printf("ch='%c', '0' <= ch && ch <= '9' =%b%n", ch, '0' <= ch && ch <='9');
+
+        ch='a';
+        System.out.printf("ch='%c', 'a' <= ch && ch <= 'z' =%b%n", ch, 'a' <= ch && ch <='z');
+
+        ch='A';
+        System.out.printf("ch='%c', 'A' <= ch && ch <= 'Z' =%b%n", ch, 'A' <= ch && ch <='Z');
+
+        ch='q';
+        System.out.printf("ch='%c', ch=='q' || ch=='Q' =%b%n", ch, ch=='q' || ch=='Q');
+    }
+
+    public static void operatorEx25(){
+        Scanner scanner = new Scanner(System.in);
+        char ch = ' ';
+
+        System.out.println("문자를 하나 입력하세요.>");
+
+        String input = scanner.nextLine();
+        ch = input.charAt(0);
+
+        if('0' <= ch && ch <= '9'){
+            System.out.printf("입력하신 문자는 숫자입니다.%n");
+        }
+        if(('a'<= ch && ch <= 'z') || ('A'<= ch && ch <= 'Z')){
+            System.out.printf("입력하신 문자는 영문자입니다.%n");
+        }
+    }
+
+    public static void operatorEx26(){
+        int a = 5;
+        int b = 0;
+
+        System.out.printf("a=%d, b=%d%n", a, b);
+        System.out.printf("a!=0 || ++b!=0 = %b%n", a!=0 || ++b!=0);
+        System.out.printf("a=%d, b=%d%n", a, b);
+        System.out.printf("a==0 && ++b!=0 = %b%n", a==0 && ++b!=0);
+        System.out.printf("a=%d, b=%d%n", a, b);
+    }
+
+    public static void operatorEx27(){
+        boolean b = true;
+        char ch ='C';
+
+        System.out.printf("b=%b%n", b);
+        System.out.printf("!b=%b%n", !b);
+        System.out.printf("!!b=%b%n", !!b);
+        System.out.printf("!!!b=%b%n", !!!b);
+        System.out.println();
+
+        System.out.printf("ch=%c%n", ch);
+        System.out.printf("ch<'a' || ch>'z'=%b%n", ch < 'a' || ch > 'z');
+        System.out.printf("!('a'<=ch && ch<='z')=%b%n", !('a'<=ch && ch<='z'));
+        System.out.printf(" 'a'<=ch && ch<='z'=%b%n", 'a'<=ch && ch<='z');
     }
 }
