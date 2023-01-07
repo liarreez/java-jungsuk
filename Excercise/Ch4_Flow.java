@@ -13,6 +13,17 @@ public class Main {
         flowEx9();
         flowEx10();
         flowEx11();
+        flowEx12();
+        flowEx13();
+        flowEx14();
+        flowEx15();
+        flowEx16();
+        flowEx17();
+        flowEx18();
+        flowEx19();
+        flowEx20();
+        flowEx21();
+        flowEx22();
     }
 
     public static void flowEx1() {
@@ -267,4 +278,117 @@ public class Main {
         }
     }
 
+    public static void flowEx12() {
+        for (int i=1; i <= 5; i++)
+            System.out.println(i);
+        for (int i = 1; i <= 5; i++)
+            System.out.print(i);
+        System.out.println();
+    }
+
+    public static void flowEx13() {
+        int sum = 0;
+
+        for(int i=1; i <= 10; i++) {
+            sum += i;
+            System.out.printf("1부터 %2d 까지의 합: %2d%n",i, sum);
+        }
+    }
+
+    public static void flowEx14() {
+        for (int i=1,j=10; i <= 10; i++,j--) {
+            System.out.printf("%d \t %d%n", i, j);
+        }
+    }
+
+    public static void flowEx15() {
+        System.out.println("i \t 2*i \t 2*i-1 \t i*i \t 11-i \t i%3 \t i/3");
+        System.out.println("----------------------------------------------");
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.printf("%d \t %d \t %d \t %d \t %d \t %d \t %d%n",
+                    i, 2*i, 2*i-1, i*i, 11-i, i%3, i/3 );
+        }
+    }
+
+    public static void flowEx16() {
+        for(int i=1; i <= 5; i++) {
+            for(int j=1; j <= 10; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void flowEx17() {
+        int num = 0;
+
+        System.out.print("*을 출력할 라인의 수를 입력하세요.>");
+
+        Scanner scanner = new Scanner(System.in);
+        String tmp = scanner.nextLine();
+        num = Integer.parseInt(tmp);
+
+        for(int i=0; i < num; i++) {
+            for (int j=0; j < i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void flowEx18() {
+        for (int i = 2; i<=9; i++) {
+            for (int j = 1; j<=9; j++) {
+                System.out.printf("%d x %d = %d%n", i, j, i*j);
+            }
+        }
+    }
+
+    public static void flowEx19() {
+        for(int i=1; i<=3; i++)
+            for (int j=1; j<=3; j++)
+                for (int k = 1; k <= 3; k++) {
+                    System.out.println(""+i+j+k);
+                }
+    }
+
+    public static void flowEx20() {
+        for(int i=1;i<=5;i++) {
+            for(int j=1;j<=5;j++) {
+                System.out.printf("[%d %d]",i,j);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void flowEx21() {
+        for(int i=1;i<=5;i++) {
+            for(int j=1;j<=5;j++) {
+                if(i==j) {
+                    System.out.printf("[%d, %d]", i, j);
+                } else {
+                    System.out.printf("%5c",' ');
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void flowEx22() {
+        int [] arr = {10,20,30,40,50};
+        int sum = 0;
+
+        for(int i=0;i<arr.length;i++)
+            System.out.printf("%d ", arr[i]);
+        System.out.println();
+
+        for(int tmp : arr) {
+            System.out.printf("%d ",tmp);
+            sum += tmp;
+        }
+        System.out.println();
+        System.out.println("sum="+sum);
+
+    }
 }
