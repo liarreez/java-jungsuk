@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,6 +20,13 @@ public class Main {
         arrayEx15();
         arrayEx16(args);
         arrayEx17(args);
+        arrayEx18();
+        arrayEx19();
+        multiArrEx1();
+        multiArrEx2();
+        multiArrEx3();
+        multiArrEx4();
+
     }
 
     public static void arrayEx1() {
@@ -328,5 +336,205 @@ public class Main {
                 System.out.println("지원되지 않는 연산입니다.");
         }
         System.out.println("결과:"+result);
+    }
+
+    public static void arrayEx18() {
+        int[][] score = {
+                  { 100, 100, 100}
+                , { 20, 20, 20}
+                , { 30, 30, 30}
+                , { 40, 40, 40}
+        };
+        int sum = 0;
+
+        for(int i=0; i < score.length; i++) {
+            for (int j=0; j < score[i].length; j++) {
+                System.out.printf("score[%d][%d]=%d%n", i, j, score[i][j]);
+            }
+        }
+        for (int[] tmp : score) {
+            for (int i : tmp) {
+                sum += i;
+            }
+        }
+        System.out.println("sum="+sum);
+    }
+
+    public static void arrayEx19() {
+        int[][] score = {
+                { 100, 100, 100}
+                , { 20, 20, 20}
+                , { 30, 30, 30}
+                , { 40, 40, 40}
+                , { 50, 50, 50}
+        };
+        int korTotal = 0, engTotal = 0, mathTotal = 0;
+
+        System.out.println("번호  국어  영어  수학  총점  평균");
+        System.out.println("==============================");
+
+        for(int i=0; i < score.length;i++) {
+            int sum = 0;
+            float avg = 0.0f;
+
+            korTotal += score[i][0];
+            engTotal += score[i][1];
+            mathTotal += score[i][2];
+            System.out.printf("%3d", i+1);
+
+            for (int j=0; j < score[i].length; j++) {
+                sum += score[i][j];
+                System.out.printf("%5d", score[i][j]);
+            }
+            avg = sum / (float) score[i].length;
+            System.out.printf("%5d %5.1f%n", sum, avg);
+        }
+        System.out.println("===============================");
+        System.out.printf("총점: %3d %4d %4d%n", korTotal, engTotal, mathTotal);
+    }
+
+    public static void multiArrEx1() {
+        final int SIZE = 10;
+        int x = 0, y = 0;
+
+        char[][] board = new char[SIZE][SIZE];
+        byte[][] shipBoard = {
+                //1  2  3  4  5  6  7  8  9
+                { 0, 0, 0, 0, 0, 0, 1, 0, 0 }, // 1
+                { 1, 1, 1, 1, 0, 0, 1, 0, 0 }, // 2
+                { 0, 0, 0, 0, 0, 0, 1, 0, 0 }, // 3
+                { 0, 0, 0, 0, 0, 0, 1, 0, 0 }, // 4
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 5
+                { 1, 1, 0, 1, 0, 0, 0, 0, 0 }, // 6
+                { 0, 0, 0, 1, 0, 0, 0, 0, 0 }, // 7
+                { 0, 0, 0, 1, 0, 0, 0, 0, 0 }, // 8
+                { 0, 0, 0, 0, 0, 1, 1, 1, 0 }, // 9
+        };
+
+        for(int i=1;i<SIZE;i++)
+            board[0][i] = board[i][0] = (char) (i+'0');
+
+        Scanner scanner = new Scanner(System.in);
+
+        while(true) {
+            System.out.printf("좌표를 입력하세요.(종료는 00)>");
+            String input = scanner.nextLine();
+
+            if(input.length()==2) {
+                x = input.charAt(0) - '0';
+                y = input.charAt(1) - '0';
+
+                if (x==0 && y==0)
+                    break;
+            }
+
+            if(input.length()!=2 || x<=0 || x>=SIZE || y<=0 || y>=SIZE) {
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                continue;
+            }
+
+            board[x][y] = shipBoard[x-1][y-1]==1 ? 'O' : 'X';
+            for (int i = 0; i < SIZE; i++)
+                System.out.println(board[i]);
+            System.out.println();
+        }
+    }
+
+    public static void multiArrEx2() {
+        final int SIZE = 5;
+        int x = 0, y = 0, num = 0;
+
+        int[][] bingo = new int[SIZE][SIZE];
+        Scanner scanner = new Scanner(System.in);
+
+        for(int i=0;i<SIZE;i++)
+            for(int j=0;j<SIZE;j++)
+                bingo[i][j] = i*SIZE + j + 1;
+
+        for(int i=0;i<SIZE;i++) {
+            for(int j=0;j<SIZE;j++) {
+                x = (int)(Math.random() * SIZE);
+                y = (int)(Math.random() * SIZE);
+
+                int tmp = bingo[i][j];
+                bingo[i][j] = bingo[x][y];
+                bingo[x][y] = tmp;
+            }
+        }
+
+        do {
+            for(int i=0;i<SIZE;i++) {
+                for (int j = 0; j < SIZE; j++)
+                    System.out.printf("%2d ", bingo[i][j]);
+                System.out.println();
+            }
+            System.out.println();
+
+            System.out.printf("1~%d의숫자를 입력하세요.(종료:0)>", SIZE*SIZE);
+            String tmp = scanner.nextLine();
+            num = Integer.parseInt(tmp);
+
+            outer:
+            for(int i=0;i<SIZE;i++) {
+                for(int j=0;j<SIZE;j++) {
+                    if(bingo[i][j]==num) {
+                        bingo[i][j] = 0;
+                        break outer;
+                    }
+                }
+            }
+        } while(num!=0);
+    }
+
+    public static void multiArrEx3() {
+        int[][] m1 = {
+                {1, 2, 3},
+                {4, 5, 6}
+        };
+        int[][] m2 = {
+                {1, 2},
+                {3, 4},
+                {5, 6}
+        };
+
+        final int ROW = m1.length;
+        final int COL = m2[0].length;
+        final int M2_ROW = m2.length;
+
+        int[][] m3 = new int[ROW][COL];
+
+        for(int i=0;i<ROW;i++)
+            for(int j=0;j<COL;j++)
+                for(int k=0;k<M2_ROW;k++)
+                    m3[i][j] += m1[i][k] * m2[k][j];
+
+        for(int i=0;i<ROW;i++) {
+            for(int j=0;j<COL;j++) {
+                System.out.printf("%3d ", m3[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void multiArrEx4() {
+        String[][] words = {
+                {"chair", "의자"},
+                {"computer", "컴퓨터"},
+                {"integer", "정수"}
+        };
+
+        Scanner scanner = new Scanner(System.in);
+
+        for(int i=0;i<words.length;i++) {
+            System.out.printf("Q%d. %s의 뜻은?", i+1, words[i][0]);
+
+            String tmp = scanner.nextLine();
+
+            if(tmp.equals(words[i][1])) {
+                System.out.printf("정답입니다.%n%n");
+            } else {
+                System.out.printf("틀렸습니다. 정답은 %s입니다.%n%n", words[i][1]);
+            }
+        }
     }
 }
